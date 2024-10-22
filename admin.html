@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasil Voting - Admin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="admin-container">
+        <h2>Hasil Voting Ketua OSIS</h2>
+        <div id="hasilVoting"></div>
+        <button onclick="resetVoting()">Reset Voting</button>
+    </div>
+
+    <script>
+        // Mengambil data hasil voting dari Local Storage
+        const hasilVoting = JSON.parse(localStorage.getItem('hasilVoting')) || {
+            kandidat1: 0,
+            kandidat2: 0,
+            kandidat3: 0
+        };
+
+        // Menampilkan hasil voting
+        document.getElementById('hasilVoting').innerHTML = `
+            <p>Kandidat 1: ${hasilVoting.kandidat1} suara</p>
+            <p>Kandidat 2: ${hasilVoting.kandidat2} suara</p>
+            <p>Kandidat 3: ${hasilVoting.kandidat3} suara</p>
+        `;
+
+        // Fungsi untuk mereset voting
+        function resetVoting() {
+            localStorage.removeItem('hasilVoting');
+            alert('Voting telah direset.');
+            location.reload();  // Muat ulang halaman
+        }
+    </script>
+</body>
+</html>
